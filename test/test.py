@@ -8,7 +8,7 @@ async def test_qec_basic(dut):
     dut._log.info("Starting QEC decoder test")
     
     # Start clock
-    clock = Clock(dut.clk, 10, units="us")
+    clock = Clock(dut.clk, 10, unit="us")
     cocotb.start_soon(clock.start())
     
     # Reset
@@ -24,7 +24,7 @@ async def test_qec_basic(dut):
     dut.ui_in.value = 0b000000
     await ClockCycles(dut.clk, 1)
     
-    assert dut.uo_out.value & 0b11 == 0b00, "Expected no correction"
+    assert int(dut.uo_out.value) & 0b11 == 0b00, "Expected no correction"
     assert (dut.uo_out.value >> 2) & 1 == 0, "Expected no error flag"
     dut._log.info("✓ No error case passed")
     
@@ -33,7 +33,7 @@ async def test_qec_basic(dut):
     dut.ui_in.value = 0b000011
     await ClockCycles(dut.clk, 1)
     
-    correction = dut.uo_out.value & 0b11
+    correction = int(dut.uo_out.value) & 0b11
     error_flag = (dut.uo_out.value >> 2) & 1
     
     assert correction == 0b01, f"Expected correction=01, got {correction:02b}"
@@ -45,7 +45,7 @@ async def test_qec_basic(dut):
     dut.ui_in.value = 0b000010
     await ClockCycles(dut.clk, 1)
     
-    correction = dut.uo_out.value & 0b11
+    correction = int(dut.uo_out.value) & 0b11
     assert correction == 0b10, f"Expected correction=10, got {correction:02b}"
     dut._log.info("✓ Qubit 1 error case passed")
     
@@ -54,7 +54,7 @@ async def test_qec_basic(dut):
     dut.ui_in.value = 0b000001
     await ClockCycles(dut.clk, 1)
     
-    correction = dut.uo_out.value & 0b11
+    correction = int(dut.uo_out.value) & 0b11
     assert correction == 0b11, f"Expected correction=11, got {correction:02b}"
     dut._log.info("✓ Qubit 2 error case passed")
     
@@ -96,7 +96,7 @@ async def test_qec_test_mode(dut):
     """Test the built-in test pattern generator"""
     dut._log.info("Starting test mode verification")
     
-    clock = Clock(dut.clk, 10, units="us")
+    clock = Clock(dut.clk, 10, unit="us")
     cocotb.start_soon(clock.start())
     
     # Reset
@@ -113,7 +113,7 @@ async def test_qec_test_mode(dut):
     dut._log.info("Test mode patterns:")
     for i in range(10):
         await ClockCycles(dut.clk, 1)
-        correction = dut.uo_out.value & 0b11
+        correction = int(dut.uo_out.value) & 0b11
         error_flag = (dut.uo_out.value >> 2) & 1
         dut._log.info(f"  Cycle {i}: correction={correction:02b}, error={error_flag}")
     
