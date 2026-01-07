@@ -1,0 +1,29 @@
+[tasks]
+bmc_quick      bmc    10
+bmc_medium     bmc    30
+bmc_deep       bmc    100
+prove          prove  30
+cover          cover  50
+
+[options]
+mode bmc
+depth 20
+
+bmc: mode bmc
+bmc: depth 20
+prove: mode prove
+prove: depth 30
+cover: mode cover
+cover: depth 50
+
+[engines]
+smtbmc boolector
+
+[script]
+read -formal tt_um_qec_decoder.v
+read -formal tt_um_qec_decoder_formal.sv
+prep -top tt_um_qec_decoder_formal
+
+[files]
+tt_um_qec_decoder.v
+tt_um_qec_decoder_formal.sv
