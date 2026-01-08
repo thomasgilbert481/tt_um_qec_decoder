@@ -2,6 +2,5 @@
     "DESIGN_NAME": "tt_um_qec_decoder",
     "VERILOG_FILES": "dir::*.v",
     "CLOCK_PORT": "clk",
-    "CLOCK_PERIOD": 20,
-    "IO_PIN_ORDER_CFG": "dir::../pin_order.cfg"
+    "CLOCK_PERIOD": 20
 }
