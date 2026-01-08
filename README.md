@@ -1,9 +1,5 @@
 # Quantum Error Correction Syndrome Decoder
 
-[![test](https://github.com/TinyTapeout/tt-qec-decoder/actions/workflows/test.yaml/badge.svg)](https://github.com/TinyTapeout/tt-qec-decoder/actions/workflows/test.yaml)
-[![gds](https://github.com/TinyTapeout/tt-qec-decoder/actions/workflows/gds.yaml/badge.svg)](https://github.com/TinyTapeout/tt-qec-decoder/actions/workflows/gds.yaml)
-[![docs](https://github.com/TinyTapeout/tt-qec-decoder/actions/workflows/docs.yaml/badge.svg)](https://github.com/TinyTapeout/tt-qec-decoder/actions/workflows/docs.yaml)
-
 A hardware implementation of a real-time 3-qubit quantum error correction syndrome decoder for Tiny Tapeout.
 
 ## Overview
